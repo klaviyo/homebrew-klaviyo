@@ -1,0 +1,18 @@
+language: generic
+
+os: osx
+osx_image:
+  - xcode10.3
+  - xcode11.6
+  - xcode12.5
+  - xcode13.2
+
+before_install:
+  - brew update
+  - brew uninstall --force --ignore-dependencies boost-python37
+  - brew install --force --build-bottle Formula/boost-python37.rb || exit 1
+  - brew bottle Formula/boost-python37.rb || exit 1
+
+branches:
+  except:
+    - /^(?:unstable)$/
